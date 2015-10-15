@@ -8,4 +8,4 @@ Para instalar as ferramentas necessárias para utilizar o simulador siga os segu
 
 1. Instale o Python versão 3 (procure ver para o seu SO se existe pacote disponível ou compile o fonte)
 2. Instale o Simpy
-    + teste
++ teste
