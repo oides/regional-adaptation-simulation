@@ -1,2 +1,5 @@
-# regional-adaptation-simulation
-Simulação de solução para planejamento regional adaptativo
+# Regional Adaptation Simulation
+
+Esse projeto implementa um simulador para validação de uma estratatégia de controle utilizando planejamento regional adaptativo.
+
+
