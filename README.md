@@ -15,6 +15,4 @@ Para instalar as ferramentas necessárias para utilizar o simulador siga os segu
 
 ## Execução
 
-Para executar a simulação:
-
-1. Execute: python overheadsimulation.py
+Para executar a simulação: python overheadsimulation.py
