@@ -4,7 +4,7 @@ Projeto que implementa um simulador para validação de uma estratatégia de con
 
 ## Instalação
 
-Enquanto um script de setup ou ferramenta para gestão de build não é inserida no projeto a instalação deve ser feita de maneira manual. Para instalar as ferramentas necessárias para utilizar o simulador siga os seguintes passos:
+Enquanto um script de setup ou ferramenta para gestão de build não é inserida no projeto a instalação deve ser realizada de maneira manual. Para instalar as ferramentas necessárias para utilizar o simulador siga os seguintes passos:
 
 1. Instale o Python versão 3 (procure ver para o seu SO se existe pacote disponível ou compile o fonte)
 2. Instale o Simpy
