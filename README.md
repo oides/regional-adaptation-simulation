@@ -15,6 +15,7 @@ Enquanto um script de setup ou ferramenta para gestão de build não é inserida
 
 3. Instale o PyYAML
   * Download em: http://pyyaml.org/download/pyyaml/PyYAML-3.11.tar.gz
+  * Descompacte o pacote obtido anteriormente e instale: python setup.py install
 
 ## Execução
 
