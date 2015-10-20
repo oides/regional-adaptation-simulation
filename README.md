@@ -13,6 +13,9 @@ Para instalar as ferramentas necessárias para utilizar o simulador siga os segu
     + Download em: https://pypi.python.org/packages/source/s/simpy/simpy-3.0.8.tar.gz#md5=477552f5bf81d8d293b3e2bb8668e406
     + Descompacte o pacote obtido anteriormente e instale: python setup.py install
 
+3. Instale o PyYAML
+  * Download em: http://pyyaml.org/download/pyyaml/PyYAML-3.11.tar.gz
+
 ## Execução
 
 Para executar a simulação: python overheadsimulation.py
