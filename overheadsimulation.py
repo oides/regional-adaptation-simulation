@@ -11,12 +11,10 @@ __author__ = 'Eudes Santos Andrade'
 import random
 
 import simpy
-
+import simconfig
 
 RANDOM_SEED = 42
-SIM_TIME = 100     # Simulation time in minutes
 JOBS_NUMBER = 20 # alterar o nome para no
-
 
 class Ambiente(object):
     """
@@ -75,7 +73,7 @@ def adicionarNo(ambiente, identificador):
         
 
 # Configuração e início da Simulação
-print('Início da simulação')
+print('Starting simulation')
 
 # random.seed(RANDOM_SEED)  # Semente para reprodução de resultados
 ambiente = Ambiente() # Criação do ambiente da simulação
@@ -89,7 +87,8 @@ novoNo = No(ambiente, '1')
 env.process(novoNo.iniciarOperacao()) # Processo que adiciona novo no ambiente da simulação
 
 # Executando a simulação
-env.run(until=SIM_TIME)
+env.run(until=simconfig.SIMULATION_TIME)
+
 
 # Exibindo número de jobs executados por cada nó...
 print('Número de Jobs executados pelo nó ' + novoNo.identificador + ': ' + str(novoNo.numeroJobsExecutados))
