@@ -13,8 +13,6 @@ import random
 import simpy
 import simconfig
 
-RANDOM_SEED = 42
-JOBS_NUMBER = 20 # alterar o nome para no
 
 class Ambiente(object):
     """

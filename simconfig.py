@@ -18,3 +18,5 @@ config = yaml.load(f)
 print('Loading configuration...')
 
 SIMULATION_TIME = config['SIMULATION_TIME']
+RANDOM_SEED = config['RANDOM_SEED']
+JOBS_NUMBER = config['JOBS_NUMBER']
