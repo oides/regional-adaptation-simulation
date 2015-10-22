@@ -12,41 +12,16 @@ import random
 
 import simpy
 import simconfig
-
-
-class Ambiente(object):
-    """
-    Representa o ambiente do sistema distribuído a ser gerenciado.
-    """
-    def __init__(self):
-        self.T_INTER_PERT = 5    # Cria uma nova perturbacão a cada 4 minutos
-        self.T_VAR_INTER_PERT = 3  # Intervalo de variação do instante de criação de nova perturbação
-        self.NIVEL_BASE_PERT = 5 # Define o nível da perturbação inserida no ambiente
-        self.VAR_NIVEL_BASE_PERT = 4 # Define o nível da perturbação inserida no ambiente
-        self.NIVEL_ATUAL_PERT = self.NIVEL_BASE_PERT # Define o nível da perturbação inserida no ambiente
-
-    def gerarNovaPerturbacao(self):
-        print('##########################################')
-        print('######## GERANDO NOVA PERTURBACAO ########')
-        print('##########################################')        
-        
-        self.NIVEL_ATUAL_PERT = random.randint(self.NIVEL_BASE_PERT-self.VAR_NIVEL_BASE_PERT, self.NIVEL_BASE_PERT+self.VAR_NIVEL_BASE_PERT)
-        print('# Novo nível da perturbação: ' + str(self.NIVEL_ATUAL_PERT))
-        
-        intervaloProximaPerturbacao = random.randint(self.T_INTER_PERT-self.T_VAR_INTER_PERT, self.T_INTER_PERT+self.T_VAR_INTER_PERT)
-        print('# Gerando nova perturbação em ' + str(intervaloProximaPerturbacao) + ' minutos')
-        print('##########################################\n')        
-        
-        return intervaloProximaPerturbacao
+from environment import Environment
 
 
 class No(object):
     """
     Representa cada nó que realiza trabalho no ambiente distribuído.
     """
-    def __init__(self, ambiente, identificador):
+    def __init__(self, environment, identificador):
         self.identificador = identificador
-        self.ambiente = ambiente    # Mantem localmente informações do ambiente sob o qual o nó está inserido
+        self.environment = environment    # Mantem localmente informações do ambiente sob o qual o nó está inserido
         self.numeroJobsExecutados = 0
 
     def iniciarOperacao(self):
@@ -55,18 +30,18 @@ class No(object):
             
     def executarTrabalho(self):
             self.numeroJobsExecutados += 1
-            return ambiente.NIVEL_ATUAL_PERT
+            return self.environment.NIVEL_ATUAL_PERT
             
 
-def adicionarPerturbacao(ambiente):
+def adicionarPerturbacao(environment):
     
     # Criando perturbações no ambiente
     while True:
-        yield env.timeout(ambiente.gerarNovaPerturbacao())
+        yield env.timeout(environment.gerarNovaPerturbacao())
         
-def adicionarNo(ambiente, identificador):
+def adicionarNo(environment, identificador):
     
-    novoNo = No(ambiente, identificador)
+    novoNo = No(environment, identificador)
     novoNo.iniciarOperacao()
         
 
@@ -74,14 +49,14 @@ def adicionarNo(ambiente, identificador):
 print('Starting simulation')
 
 # random.seed(RANDOM_SEED)  # Semente para reprodução de resultados
-ambiente = Ambiente() # Criação do ambiente da simulação
+environment = Environment() # Criação do ambiente da simulação
 
-# Criando o enviroment do simpy
+# Criando o environment do simpy
 env = simpy.Environment()
 
 # Registro de processos
-env.process(adicionarPerturbacao(ambiente)) # Processo que adiciona perturbação ao ambiente da simulação
-novoNo = No(ambiente, '1')
+env.process(adicionarPerturbacao(environment)) # Processo que adiciona perturbação ao ambiente da simulação
+novoNo = No(environment, '1')
 env.process(novoNo.iniciarOperacao()) # Processo que adiciona novo no ambiente da simulação
 
 # Executando a simulação
