@@ -20,3 +20,4 @@ print('Loading configuration...')
 SIMULATION_TIME = config['SIMULATION_TIME']
 RANDOM_SEED = config['RANDOM_SEED']
 JOBS_NUMBER = config['JOBS_NUMBER']
+NODES_NUMBER = config['NODES_NUMBER']

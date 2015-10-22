@@ -16,17 +16,25 @@ from environment import Environment
 from node import Node
 
 
-def adicionarPerturbacao(simulationEnvironment):
+def addDisturbing():
+    simpyEnvironment.process(startDisturbing())
+        
+def startDisturbing():
     
     # Criando perturbações no ambiente
     while True:
         yield simpyEnvironment.timeout(simulationEnvironment.gerarNovaPerturbacao())
         
-def adicionarNo(simulationEnvironment, identificador):
-    
-    novoNo = Node(simulationEnvironment, simpyEnvironment, identificador)
-    novoNo.iniciarOperacao()
+def addNodes(amount):
         
+    nodes = []
+    
+    for x in range(amount):
+        newNode = Node(simulationEnvironment, simpyEnvironment, 'Node ' + str(x))
+        nodes.append(newNode)
+        simpyEnvironment.process(newNode.iniciarOperacao()) # Processo que adiciona novo no ambiente da simulação
+        
+    return nodes
 
 # Configuração e início da Simulação
 print('Starting simulation')
@@ -37,14 +45,16 @@ simulationEnvironment = Environment() # Criação do ambiente da simulação
 # Criando o environment do simpy
 simpyEnvironment = simpy.Environment()
 
-# Registro de processos
-simpyEnvironment.process(adicionarPerturbacao(simulationEnvironment)) # Processo que adiciona perturbação ao ambiente da simulação
-novoNo = Node(simulationEnvironment, simpyEnvironment, '1')
-simpyEnvironment.process(novoNo.iniciarOperacao()) # Processo que adiciona novo no ambiente da simulação
+# Adding disturbing process
+addDisturbing() # Processo que adiciona perturbação ao ambiente da simulação
+
+# Adding node
+nodes = addNodes(simconfig.NODES_NUMBER)
 
 # Executando a simulação
 simpyEnvironment.run(until=simconfig.SIMULATION_TIME)
 
 
 # Exibindo número de jobs executados por cada nó...
-print('Número de Jobs executados pelo nó ' + novoNo.identificador + ': ' + str(novoNo.numeroJobsExecutados))
+for node in nodes:
+    print('Número de Jobs executados pelo nó \'' + node.identificador + '\': ' + str(node.numeroJobsExecutados))
