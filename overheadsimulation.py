@@ -13,35 +13,18 @@ import random
 import simpy
 import simconfig
 from environment import Environment
+from node import Node
 
-
-class No(object):
-    """
-    Representa cada nó que realiza trabalho no ambiente distribuído.
-    """
-    def __init__(self, environment, identificador):
-        self.identificador = identificador
-        self.environment = environment    # Mantem localmente informações do ambiente sob o qual o nó está inserido
-        self.numeroJobsExecutados = 0
-
-    def iniciarOperacao(self):
-        while True:
-            yield env.timeout(self.executarTrabalho())
-            
-    def executarTrabalho(self):
-            self.numeroJobsExecutados += 1
-            return self.environment.NIVEL_ATUAL_PERT
-            
 
 def adicionarPerturbacao(environment):
     
     # Criando perturbações no ambiente
     while True:
-        yield env.timeout(environment.gerarNovaPerturbacao())
+        yield simpyEnvironment.timeout(environment.gerarNovaPerturbacao())
         
 def adicionarNo(environment, identificador):
     
-    novoNo = No(environment, identificador)
+    novoNo = Node(environment, simpyEnvironment, identificador)
     novoNo.iniciarOperacao()
         
 
@@ -49,18 +32,18 @@ def adicionarNo(environment, identificador):
 print('Starting simulation')
 
 # random.seed(RANDOM_SEED)  # Semente para reprodução de resultados
-environment = Environment() # Criação do ambiente da simulação
+simulationEnvironment = Environment() # Criação do ambiente da simulação
 
 # Criando o environment do simpy
-env = simpy.Environment()
+simpyEnvironment = simpy.Environment()
 
 # Registro de processos
-env.process(adicionarPerturbacao(environment)) # Processo que adiciona perturbação ao ambiente da simulação
-novoNo = No(environment, '1')
-env.process(novoNo.iniciarOperacao()) # Processo que adiciona novo no ambiente da simulação
+simpyEnvironment.process(adicionarPerturbacao(simulationEnvironment)) # Processo que adiciona perturbação ao ambiente da simulação
+novoNo = Node(simulationEnvironment, simpyEnvironment, '1')
+simpyEnvironment.process(novoNo.iniciarOperacao()) # Processo que adiciona novo no ambiente da simulação
 
 # Executando a simulação
-env.run(until=simconfig.SIMULATION_TIME)
+simpyEnvironment.run(until=simconfig.SIMULATION_TIME)
 
 
 # Exibindo número de jobs executados por cada nó...
