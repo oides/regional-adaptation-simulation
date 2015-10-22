@@ -7,9 +7,9 @@ __author__ = 'Eudes Santos Andrade'
 
 class Node(object):
 
-    def __init__(self, environment, simpyEnvironment, identificador):
+    def __init__(self, simulationEnvironment, simpyEnvironment, identificador):
         self.identificador = identificador
-        self.environment = environment    # Mantem localmente informações do ambiente sob o qual o nó está inserido
+        self.simulationEnvironment = simulationEnvironment    # Mantem localmente informações do ambiente sob o qual o nó está inserido
         self.simpyEnvironment = simpyEnvironment    # Mantem localmente informações do ambiente sob o qual o nó está inserido
         self.numeroJobsExecutados = 0
 
@@ -19,5 +19,5 @@ class Node(object):
             
     def executarTrabalho(self):
             self.numeroJobsExecutados += 1
-            return self.environment.NIVEL_ATUAL_PERT
+            return self.simulationEnvironment.NIVEL_ATUAL_PERT
             
