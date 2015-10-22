@@ -16,15 +16,15 @@ from environment import Environment
 from node import Node
 
 
-def adicionarPerturbacao(environment):
+def adicionarPerturbacao(simulationEnvironment):
     
     # Criando perturbações no ambiente
     while True:
-        yield simpyEnvironment.timeout(environment.gerarNovaPerturbacao())
+        yield simpyEnvironment.timeout(simulationEnvironment.gerarNovaPerturbacao())
         
-def adicionarNo(environment, identificador):
+def adicionarNo(simulationEnvironment, identificador):
     
-    novoNo = Node(environment, simpyEnvironment, identificador)
+    novoNo = Node(simulationEnvironment, simpyEnvironment, identificador)
     novoNo.iniciarOperacao()
         
 
