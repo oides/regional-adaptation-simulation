@@ -14,6 +14,7 @@ import simpy
 import simconfig
 from environment import Environment
 from node import Node
+from report import Report
 
 
 def addDisturbing():
@@ -56,5 +57,8 @@ simpyEnvironment.run(until=simconfig.SIMULATION_TIME)
 
 
 # Exibindo número de jobs executados por cada nó...
-for node in nodes:
-    print('Número de Jobs executados pelo nó \'' + node.identificador + '\': ' + str(node.numeroJobsExecutados))
+for nodeId,jobsNumber in Report.jobsExecutedOnNodes.items():
+    print('Número de Jobs executados pelo nó \'' + nodeId + '\': ' + str(jobsNumber))
+
+Report.generateReport()
+
