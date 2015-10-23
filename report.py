@@ -29,11 +29,12 @@ class Report(object):
             newJobsOnNode['jobsExecuted'] = 1
             Report.jobsExecutedOnNodes.append(newJobsOnNode)
 
-    def addDisturbing(disturbingLevel, disturbingDuration):
+    def addDisturbing(disturbingLevel, disturbingDuration, currentTime):
         
         disturbing = {}
         disturbing['disturbingLevel'] = disturbingLevel
         disturbing['disturbingDuration'] = disturbingDuration
+        disturbing['currentTime'] = currentTime
         
         Report.disturbings.append(disturbing)
         
