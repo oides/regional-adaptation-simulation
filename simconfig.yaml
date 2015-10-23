@@ -4,4 +4,4 @@ SIMULATION_TIME: 100 # Simulation time in minutes
 RANDOM_SEED:  42 # Radom seed
 JOBS_NUMBER: 20 # Jobs number executed on each node
 NODES_NUMBER: 5 # Nodes number on distributed environment
-DEFAULT_REGION_SIZE: 2 # Nodes number used by default on simulation startup
+DEFAULT_REGION_SIZE: 1 # Nodes number used by default on simulation startup

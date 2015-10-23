@@ -16,14 +16,14 @@ from environment import SimulationEnvironment
 from node import Node
 from report import Report
 from region import Region
+from controller import Controller
 
 
 def addDisturbing():
     simpyEnvironment.process(simulationEnvironment.startDisturbing())
         
         
-def addNodes(amount):
-        
+def addNodes(amount):        
     nodes = []
     
     for x in range(amount):
@@ -32,6 +32,12 @@ def addNodes(amount):
         simpyEnvironment.process(newNode.iniciarOperacao()) # Processo que adiciona novo no ambiente da simulação
         
     return nodes
+
+
+def addController():
+    controller = Controller(simpyEnvironment)
+    simpyEnvironment.process(controller.startOperation()) # Processo que adiciona novo no ambiente da simulação
+        
 
 # Configuração e início da Simulação
 print('Starting simulation')
@@ -53,6 +59,9 @@ addDisturbing() # Processo que adiciona perturbação ao ambiente da simulação
 
 # Adding node
 nodes = addNodes(simconfig.NODES_NUMBER)
+
+# Building the distributed system controller
+addController()
 
 # Executando a simulação
 simpyEnvironment.run(until=simconfig.SIMULATION_TIME)
