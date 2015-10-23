@@ -10,24 +10,38 @@ import yaml
 
 class Report(object):
 
-    jobsExecutedOnNodes = {}
+    content = {}
+
+    jobsExecutedOnNodes = []
+    disturbings = []
     
     def addJobsExecutedOnNodes(nodeId):
         
-        jobOnNode = Report.jobsExecutedOnNodes.get(nodeId, None)
+        jobsExecutedOnNodesDictionary = {jobsOnNode['nodeId']: jobsOnNode for jobsOnNode in Report.jobsExecutedOnNodes}
         
-        if jobOnNode is None:
-            Report.jobsExecutedOnNodes[nodeId] = 1
-        else:
-            Report.jobsExecutedOnNodes[nodeId] = jobOnNode + 1
+        jobOnNode = jobsExecutedOnNodesDictionary.get(nodeId, None)
 
+        if jobOnNode is not None:
+            jobOnNode['jobsExecuted'] = jobOnNode['jobsExecuted'] + 1
+        else:
+            newJobsOnNode = {}
+            newJobsOnNode['nodeId'] = nodeId
+            newJobsOnNode['jobsExecuted'] = 1
+            Report.jobsExecutedOnNodes.append(newJobsOnNode)
+
+    def addDisturbing(disturbingLevel, disturbingDuration):
+        
+        disturbing = {}
+        disturbing['disturbingLevel'] = disturbingLevel
+        disturbing['disturbingDuration'] = disturbingDuration
+        
+        Report.disturbings.append(disturbing)
+        
     def generateReport():
         
         generatedFile = open('generatedreport.yaml', 'w')
         
-        yaml.dump(Report.jobsExecutedOnNodes, generatedFile)
-        yaml.dump(Report.jobsExecutedOnNodes, generatedFile)
-        yaml.dump(Report.jobsExecutedOnNodes, generatedFile)
-        yaml.dump(Report.jobsExecutedOnNodes, generatedFile)
-        yaml.dump(Report.jobsExecutedOnNodes, generatedFile)
-        yaml.dump(Report.jobsExecutedOnNodes, generatedFile)
+        Report.content['disturbings'] = Report.disturbings
+        Report.content['jobsExecutedOnNodes'] = Report.jobsExecutedOnNodes
+        
+        yaml.dump(Report.content, generatedFile)

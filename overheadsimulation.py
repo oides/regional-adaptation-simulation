@@ -24,7 +24,7 @@ def startDisturbing():
     
     # Criando perturbações no ambiente
     while True:
-        yield simpyEnvironment.timeout(simulationEnvironment.gerarNovaPerturbacao())
+        yield simpyEnvironment.timeout(simulationEnvironment.generateDisturbing())
         
 def addNodes(amount):
         
@@ -55,10 +55,6 @@ nodes = addNodes(simconfig.NODES_NUMBER)
 # Executando a simulação
 simpyEnvironment.run(until=simconfig.SIMULATION_TIME)
 
-
-# Exibindo número de jobs executados por cada nó...
-for nodeId,jobsNumber in Report.jobsExecutedOnNodes.items():
-    print('Número de Jobs executados pelo nó \'' + nodeId + '\': ' + str(jobsNumber))
-
+# Generating report
 Report.generateReport()
 
