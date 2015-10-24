@@ -9,6 +9,7 @@ from report import Report
 from controlfunctions import ControlFunctions
 from environment import SimulationEnvironment
 from region import Region
+import simconfig
 
 
 class Controller(object):
@@ -25,4 +26,4 @@ class Controller(object):
             # Report.addJobsExecutedOnNodes(self.identificador)
             # return ControlFunctions.calculate_job_cost(self.simulationEnvironment.NIVEL_ATUAL_PERT, self.region.region_size)
             print('Tunando')
-            return 10
+            return simconfig.CONTROLLER_FREQUENCY
