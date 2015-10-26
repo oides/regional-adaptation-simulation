@@ -20,7 +20,7 @@ from controller import Controller
 
 
 def addDisturbing():
-    simpyEnvironment.process(simulationEnvironment.startDisturbing())
+    simpyEnvironment.process(simulationEnvironment.start_disturbing())
         
         
 def addNodes(amount):        
@@ -50,7 +50,7 @@ def addRegion():
 print('Starting simulation')
 
 # Semente para reprodução de resultados
-# random.seed(simconfig.RANDOM_SEED)
+random.seed(simconfig.RANDOM_SEED)
 
 # Criando o environment do simpy
 simpyEnvironment = simpy.Environment()
