@@ -16,5 +16,15 @@ class ControlFunctions(object):
         if job_cost < 1:
             job_cost = 1
             
+        print('Job Cost: ' + str(job_cost))
         return job_cost
+ 
+    def calculate_actuation_value(controlled_variable_number_jobs_executed):
+        
+        if controlled_variable_number_jobs_executed == simconfig.SET_POINT:
+            return 0
+        elif controlled_variable_number_jobs_executed < simconfig.SET_POINT:
+            return 1
+        else:
+            return -1
  

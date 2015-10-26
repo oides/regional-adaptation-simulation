@@ -27,23 +27,30 @@ def addNodes(amount):
     nodes = []
     
     for x in range(amount):
-        newNode = Node(simpyEnvironment, simulationEnvironment, region, 'Node ' + str(x))
+        newNode = Node(simpyEnvironment, simulationEnvironment, 'Node ' + str(x))
         nodes.append(newNode)
         simpyEnvironment.process(newNode.iniciarOperacao()) # Processo que adiciona novo no ambiente da simulação
-        
+    
+    simulationEnvironment.nodes = nodes
+    
     return nodes
 
 
 def addController():
-    controller = Controller(simpyEnvironment)
+    controller = Controller(simpyEnvironment, simulationEnvironment)
     simpyEnvironment.process(controller.startOperation()) # Processo que adiciona novo no ambiente da simulação
+
         
+def addRegion():
+    region = Region()
+    simulationEnvironment.region = region
+
 
 # Configuração e início da Simulação
 print('Starting simulation')
 
 # Semente para reprodução de resultados
-random.seed(simconfig.RANDOM_SEED)
+# random.seed(simconfig.RANDOM_SEED)
 
 # Criando o environment do simpy
 simpyEnvironment = simpy.Environment()
@@ -52,13 +59,13 @@ simpyEnvironment = simpy.Environment()
 simulationEnvironment = SimulationEnvironment(simpyEnvironment)
 
 # Building the simulation region configuration
-region = Region()
+addRegion()
 
 # Adding disturbing process
 addDisturbing() # Processo que adiciona perturbação ao ambiente da simulação
 
 # Adding node
-nodes = addNodes(simconfig.NODES_NUMBER)
+addNodes(simconfig.NODES_NUMBER)
 
 # Building the distributed system controller
 addController()

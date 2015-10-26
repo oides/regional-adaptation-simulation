@@ -13,11 +13,10 @@ from region import Region
 
 class Node(object):
 
-    def __init__(self, simpyEnvironment, simulationEnvironment, region, identificador):        
+    def __init__(self, simpyEnvironment, simulationEnvironment, identificador):
         self.identificador = identificador
         self.simulationEnvironment = simulationEnvironment    # Mantem localmente informações do ambiente sob o qual o nó está inserido
         self.simpyEnvironment = simpyEnvironment    # Mantem localmente informações do ambiente sob o qual o nó está inserido
-        self.region = region    # Hold the current region configuration
         self.jobsExecuted = 0    # Counter to executed jobs on node
 
     def iniciarOperacao(self):
@@ -25,8 +24,8 @@ class Node(object):
             yield self.simpyEnvironment.timeout(self.executarTrabalho())
             
     def executarTrabalho(self):        
-        self.jobsExecuted + 1
+        self.jobsExecuted += 1
         Report.addJobsExecutedOnNodes(self.identificador)
         
-        return ControlFunctions.calculate_job_cost(self.simulationEnvironment.NIVEL_ATUAL_PERT, self.region.region_size)
+        return ControlFunctions.calculate_job_cost(self.simulationEnvironment.NIVEL_ATUAL_PERT, self.simulationEnvironment.region.region_size)
             

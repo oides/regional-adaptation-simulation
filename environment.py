@@ -16,9 +16,12 @@ class SimulationEnvironment(object):
         self.simpyEnvironment = simpyEnvironment    # Hold the simpy environment
         self.T_INTER_PERT = 5    # Cria uma nova perturbacão a cada 4 minutos
         self.T_VAR_INTER_PERT = 3  # Intervalo de variação do instante de criação de nova perturbação
-        self.NIVEL_BASE_PERT = 5 # Define o nível da perturbação inserida no ambiente
+        self.NIVEL_BASE_PERT = 10 # Define o nível da perturbação inserida no ambiente
         self.VAR_NIVEL_BASE_PERT = 4 # Define o nível da perturbação inserida no ambiente
         self.NIVEL_ATUAL_PERT = self.NIVEL_BASE_PERT # Define o nível da perturbação inserida no ambiente
+        
+        self.nodes = None   # Each node on distributed environment in charge of execute jobs
+        self.region = None  # Region defined on regional planner pattern
 
     def startDisturbing(self):
     
