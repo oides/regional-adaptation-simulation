@@ -13,6 +13,7 @@ import random
 import simpy
 import simconfig
 from environment import SimulationEnvironment
+from controlfunctions import ControlFunctions
 from node import Node
 from report import Report
 from region import Region
@@ -42,7 +43,7 @@ def addController():
 
         
 def addRegion():
-    region = Region()
+    region = Region(simpyEnvironment)
     simulationEnvironment.region = region
 
 
@@ -50,7 +51,8 @@ def addRegion():
 print('Starting simulation')
 
 # Semente para reprodução de resultados
-random.seed(simconfig.RANDOM_SEED)
+if simconfig.ENABLE_SEED:
+    random.seed(simconfig.RANDOM_SEED)
 
 # Criando o environment do simpy
 simpyEnvironment = simpy.Environment()
@@ -70,8 +72,11 @@ addNodes(simconfig.NODES_NUMBER)
 # Building the distributed system controller
 addController()
 
+# Configuring enviroment on control functions
+ControlFunctions.simpyEnvironment = simpyEnvironment
+
 # Executando a simulação
 simpyEnvironment.run(until=simconfig.SIMULATION_TIME)
 
 # Generating report
-Report.generateReport()
+Report.generate_report()

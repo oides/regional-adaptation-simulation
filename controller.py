@@ -26,9 +26,6 @@ class Controller(object):
             yield self.simpyEnvironment.timeout(self.tunning())
             
     def tunning(self):
-        # Report.addJobsExecutedOnNodes(self.identificador)
-        # return ControlFunctions.calculate_job_cost(self.simulationEnvironment.NIVEL_ATUAL_PERT, self.region.region_size)
-
         jobsExecutedOnNodes = {node.identificador: node.jobsExecuted for node in self.simulationEnvironment.nodes}
         controlledVariable = 0
         
@@ -43,10 +40,9 @@ class Controller(object):
         
             actuation_value = ControlFunctions.calculate_actuation_value(controlledVariable)
                 
-            self.simulationEnvironment.region.region_size += actuation_value                
+            self.simulationEnvironment.region.increment_region_size(actuation_value)
                 
-            print('Controlled Variable: ' + str(controlledVariable))
-            print('Actuation Value: ' + str(actuation_value))
+            Report.add_actuation(actuation_value, controlledVariable, self.simpyEnvironment.now)
                 
         self.lastCountJobsExecutedOnNodes = jobsExecutedOnNodes
         

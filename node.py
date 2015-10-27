@@ -25,7 +25,7 @@ class Node(object):
             
     def executarTrabalho(self):        
         self.jobsExecuted += 1
-        Report.addJobsExecutedOnNodes(self.identificador)
+        Report.add_jobs_executed_on_nodes(self.identificador)
         
-        return ControlFunctions.calculate_job_cost(self.simulationEnvironment.NIVEL_ATUAL_PERT, self.simulationEnvironment.region.region_size)
+        return ControlFunctions.calculate_job_cost(self.simulationEnvironment.NIVEL_ATUAL_PERT, self.simulationEnvironment.region._region_size)
             

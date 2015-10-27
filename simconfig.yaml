@@ -1,17 +1,23 @@
 %YAML 1.2
 ---
 # Simulation
-SIMULATION_TIME: 500 # Simulation time in minutes
+ENABLE_SEED: false # Trigger to enable seed
 RANDOM_SEED:  42 # Radom seed
-NODES_NUMBER: 5 # Nodes number on distributed environment
-DEFAULT_REGION_SIZE: 8 # Nodes number used by default on simulation startup
+
+SIMULATION_TIME: 6000 # Simulation time in minutes
+NODES_NUMBER: 1 # Nodes number on distributed environment
+DEFAULT_REGION_SIZE: 200 # Nodes number used by default on simulation startup
 
 # Controller
-CONTROLLER_FREQUENCY: 25 # Controller operating frequency
-SET_POINT: 8 # The controllers set_point is the jobs number executed on each node
+CONTROLLER_FREQUENCY: 20 # Controller operating frequency
+SET_POINT: 2 # The controllers set_point is the jobs number executed on each node / PERIOD
 
 # Disturbing
-BASE_DISTURBING_PERIOD: 5 # Gap between two differents disturbings
-INTERVAL_DISTURBING_PERIOD: 3 # Disturbing period variation interval
-BASE_DISTURBING_LEVEL: 10 # Disturbing level initial state
-INTERVAL_DISTURBING_LEVEL: 4 # Gap between two differents disturbing levels
+BASE_DISTURBING_PERIOD: 500 # Gap between two differents disturbings
+INTERVAL_DISTURBING_PERIOD: 5 # Disturbing period variation interval
+BASE_DISTURBING_LEVEL: 105 # Disturbing level initial state MEDIA
+INTERVAL_DISTURBING_LEVEL: 2 # Gap between two differents disturbing levels DESVIO PADRAO
+
+
+#COLOCAR A FREQUENCIA DE OPERACAO DO CONTROLADOR INFERIOR A FREQUENCIA DA PERTURBACAO DO AMBINTE
+#AJUSTAR O SETPOINT PARA A NOVA DURACAO DA FRQUENCIA DE OPERACAO DO CONTROLADOR

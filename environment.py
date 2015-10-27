@@ -30,6 +30,6 @@ class SimulationEnvironment(object):
         self.NIVEL_ATUAL_PERT = random.randint(simconfig.BASE_DISTURBING_LEVEL-simconfig.INTERVAL_DISTURBING_LEVEL, simconfig.BASE_DISTURBING_LEVEL+simconfig.INTERVAL_DISTURBING_LEVEL)
         intervaloProximaPerturbacao = random.randint(simconfig.BASE_DISTURBING_PERIOD - simconfig.INTERVAL_DISTURBING_PERIOD, simconfig.BASE_DISTURBING_PERIOD + simconfig.INTERVAL_DISTURBING_PERIOD)
         
-        Report.addDisturbing(str(self.NIVEL_ATUAL_PERT), str(intervaloProximaPerturbacao), self.simpyEnvironment.now)
+        Report.add_disturbing(str(self.NIVEL_ATUAL_PERT), str(intervaloProximaPerturbacao), self.simpyEnvironment.now)
         
         return intervaloProximaPerturbacao
