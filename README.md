@@ -20,3 +20,4 @@ Enquanto um script de setup ou ferramenta para gestão de build não é inserida
 ## Execução
 
 Para executar a simulação: python overheadsimulation.py
+teste
