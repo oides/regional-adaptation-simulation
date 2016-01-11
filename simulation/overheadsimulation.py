@@ -48,7 +48,7 @@ def addRegion():
 
 
 # Configuração e início da Simulação
-print('Starting simulation')
+print('Starting simulation...')
 
 # Semente para reprodução de resultados
 if simconfig.ENABLE_SEED:

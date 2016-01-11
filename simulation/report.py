@@ -67,7 +67,8 @@ class Report(object):
         Report.region_sizes.append(region_size)
         
     def generate_report():
-        
+
+        print('Generating report...')
         generatedFile = open('generatedreport.yaml', 'w')
         
         Report.content['disturbings'] = Report.disturbings
