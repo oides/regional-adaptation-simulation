@@ -1,8 +1,11 @@
-# Executing simulation
-python overheadsimulation.py
+# Replications...
+for i in {1..20}
+do
+	# Executing simulation
+	python overheadsimulation.py
 
-# Geting jobs number executed
-va=$(python _jobsExecutedUtil.py)
+	# Geting jobs number executed
+	va=$(python _jobsExecutedUtil.py)
 
-
-echo 'Jobs number executed: ' $va
+	echo 'Jobs number executed: ' $va
+done

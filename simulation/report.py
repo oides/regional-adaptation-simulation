@@ -69,7 +69,7 @@ class Report(object):
     def generate_report():
 
         print('Generating report...')
-        generatedFile = open('generatedreport.yaml', 'w')
+        generatedFile = open('reports/generatedreport.yaml', 'w')
         
         Report.content['disturbings'] = Report.disturbings
         Report.content['jobsExecutedOnNodes'] = Report.jobsExecutedOnNodes

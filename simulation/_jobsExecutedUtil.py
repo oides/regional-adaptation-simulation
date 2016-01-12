@@ -7,7 +7,7 @@ __author__ = 'Eudes Santos Andrade'
 
 import yaml
 
-f = open('generatedreport.yaml', 'r')
+f = open('reports/generatedreport.yaml', 'r')
 
 report = yaml.load(f)
 
