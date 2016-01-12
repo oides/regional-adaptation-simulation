@@ -23,6 +23,8 @@ if len(sys.argv) > 2:
     RANDOM_SEED =  sys.argv[2]
 else:
     RANDOM_SEED = config['RANDOM_SEED']
+print('Seed: ' + str(RANDOM_SEED))
+
 
 SIMULATION_TIME = config['SIMULATION_TIME']
 NODES_NUMBER = config['NODES_NUMBER']
