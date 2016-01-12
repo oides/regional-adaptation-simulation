@@ -9,7 +9,7 @@ __author__ = 'Eudes Santos Andrade'
 
 
 import yaml
-
+import sys
 
 f = open('simconfig.yaml', 'r')
 
@@ -17,9 +17,12 @@ config = yaml.load(f)
 
 print('Loading configuration...')
 
-# Simulation
+# Simulation Random
 ENABLE_SEED = config['ENABLE_SEED']
-RANDOM_SEED = config['RANDOM_SEED']
+if len(sys.argv) > 2: 
+    RANDOM_SEED =  sys.argv[2]
+else:
+    RANDOM_SEED = config['RANDOM_SEED']
 
 SIMULATION_TIME = config['SIMULATION_TIME']
 NODES_NUMBER = config['NODES_NUMBER']

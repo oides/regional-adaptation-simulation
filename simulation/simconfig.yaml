@@ -2,7 +2,7 @@
 ---
 # Simulation
 ENABLE_SEED: false # Trigger to enable seed
-RANDOM_SEED:  42 # Radom seed
+RANDOM_SEED:  42 # Radom seed is only used if NO command line argument define the random seed
 
 SIMULATION_TIME: 6000 # Simulation time in minutes
 NODES_NUMBER: 1 # Nodes number on distributed environment
