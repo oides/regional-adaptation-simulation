@@ -10,6 +10,7 @@ __author__ = 'Eudes Santos Andrade'
 
 import random
 
+import sys
 import simpy
 import simconfig
 from environment import SimulationEnvironment
@@ -46,9 +47,10 @@ def addRegion():
     region = Region(simpyEnvironment)
     simulationEnvironment.region = region
 
+REPLICATIONS = sys.argv[1]
 
 # Configuração e início da Simulação
-print('Starting simulation...')
+print('Starting simulation [replication ' + REPLICATIONS + ']...')
 
 # Semente para reprodução de resultados
 if simconfig.ENABLE_SEED:
