@@ -8,14 +8,14 @@ outputR=''
 for ((i=0; i < ${#seeds[@]}; i++))
 do
 	# Executing simulation
-	python overheadsimulation.py $((i + 1)) ${seeds[$i]} disable
+	python overheadsimulation.py $((i + 1)) ${seeds[$i]} disabled
 
 	# Geting jobs number executed
 	va=$(python _jobsExecutedUtil.py)
 
 	outputR=$outputR' '$va
 
-	echo 'Jobs number executed: ' $va
+	echo 'Jobs number executed: ' $va '...'
 	echo
 done
 
@@ -30,14 +30,14 @@ outputR=''
 for ((i=0; i < ${#seeds[@]}; i++))
 do
 	# Executing simulation
-	python overheadsimulation.py $((i + 1)) ${seeds[$i]} enable
+	python overheadsimulation.py $((i + 1)) ${seeds[$i]} enabled
 
 	# Geting jobs number executed
 	va=$(python _jobsExecutedUtil.py)
 
 	outputR=$outputR' '$va
 
-	echo 'Jobs number executed: ' $va
+	echo 'Jobs number executed: ' $va '...'
 	echo
 done
 
