@@ -12,12 +12,12 @@ LEVELS_SIZE = 10
 #controlOn = c(640, 712, 681, 558, 610, 740, 707, 585, 635, 682)
 
 # Exemplo maconha
-controlOff = c(16,20,14,21,20,18,13,15,17,21)
-controlOn = c(18,22,21,17,20,17,23,20,22,21)
+#controlOff = c(16,20,14,21,20,18,13,15,17,21)
+#controlOn = c(18,22,21,17,20,17,23,20,22,21)
 
 # Exemplo load CSV
-#controlOff = scan('reports/outputControlOff.csv')
-#controlOn = scan('reports/outputControlOn.csv')
+controlOff = scan('reports/outputControlOff.csv')
+controlOn = scan('reports/outputControlOn.csv')
 
 cat("\n##########################################\n")
 cat("\n### START ANDERSON-DARLING CONTROL OFF\n")
@@ -42,11 +42,11 @@ levene.test(controlOnOffCombined, factor, location="median")
 cat("\n##########################################\n")
 cat("\n### START T-TEST\n")
 cat("\n##########################################\n")
-t.test(controlOff, controlOn)
+t.test(controlOff, controlOn, alternative = "less")
 
 cat("\n##########################################\n")
 cat("\n### START WILCOXON\n")
 cat("\n##########################################\n")
-wilcox.test(controlOff, controlOn, paired=TRUE)
+wilcox.test(controlOff, controlOn, paired=TRUE, alternative = "less")
 
 sink()
