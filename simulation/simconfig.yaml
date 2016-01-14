@@ -6,7 +6,7 @@ RANDOM_SEED:  42 # Radom seed is only used if NO command line argument define th
 
 SIMULATION_TIME: 6000 # Simulation time in minutes
 NODES_NUMBER: 1 # Nodes number on distributed environment
-DEFAULT_REGION_SIZE: 200 # Nodes number used by default on simulation startup
+DEFAULT_REGION_SIZE: 80 # Nodes number used by default on simulation startup
 
 # Controller
 CONTROLLER_FREQUENCY: 20 # Controller operating frequency

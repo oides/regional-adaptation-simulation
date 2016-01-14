@@ -1,4 +1,5 @@
 __pycache__
 generatedreport.yaml
 analysis.out
-
+outputControlOn.csv
+outputControlOff.csv

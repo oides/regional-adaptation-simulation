@@ -38,11 +38,15 @@ def addNodes(amount):
     return nodes
 
 
-def addController():
-    controller = Controller(simpyEnvironment, simulationEnvironment)
-    simpyEnvironment.process(controller.startOperation()) # Processo que adiciona novo no ambiente da simulação
-
+def addController(controllerEnabled):
+    if controllerEnabled == 'enable':
+        print('Com controller')
+        controller = Controller(simpyEnvironment, simulationEnvironment)
+        simpyEnvironment.process(controller.startOperation()) # Processo que adiciona novo no ambiente da simulação
+    else:
+        print('Sem controller')
         
+
 def addRegion():
     region = Region(simpyEnvironment)
     simulationEnvironment.region = region
@@ -72,7 +76,7 @@ addDisturbing() # Processo que adiciona perturbação ao ambiente da simulação
 addNodes(simconfig.NODES_NUMBER)
 
 # Building the distributed system controller
-addController()
+addController(sys.argv[3])
 
 # Configuring enviroment on control functions
 ControlFunctions.simpyEnvironment = simpyEnvironment
