@@ -16,12 +16,6 @@ else:
 
 report = yaml.load(f)
 
-JOBS_EXECUTED = report['jobsExecutedOnNodes']
-totalJobs = 0
-
-for node in JOBS_EXECUTED:
-    totalJobs += node.get('jobsExecuted')
-
-print(str(totalJobs))
+print(str(report['idle_cycles']))
 
 

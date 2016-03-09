@@ -17,7 +17,8 @@ class Report(object):
     jobs_costs = []
     actuations = []
     region_sizes = []
-    
+    idle = 0
+
     def add_jobs_executed_on_nodes(node_id):
         
         jobsExecutedOnNodesDictionary = {jobsOnNode['nodeId']: jobsOnNode for jobsOnNode in Report.jobsExecutedOnNodes}
@@ -66,15 +67,25 @@ class Report(object):
         
         Report.region_sizes.append(region_size)
         
-    def generate_report():
+    def add_idle_cycle():
+
+        Report.idle += 1
+
+    def generate_report(controllerEnabled):
+
+        if controllerEnabled == 'enabled':
+            fileName = 'generatedReport.yaml'
+        else:
+            fileName = 'generatedreportControlerDisabled.yaml'
 
         print('Generating report...')
-        generatedFile = open('reports/generatedreport.yaml', 'w')
+        generatedFile = open('reports/' + fileName, 'w')
         
         Report.content['disturbings'] = Report.disturbings
         Report.content['jobsExecutedOnNodes'] = Report.jobsExecutedOnNodes
         Report.content['jobs_costs'] = Report.jobs_costs
         Report.content['actuations'] = Report.actuations
         Report.content['region_sizes'] = Report.region_sizes
-        
+        Report.content['idle_cycles'] = Report.idle
+
         yaml.dump(Report.content, generatedFile)

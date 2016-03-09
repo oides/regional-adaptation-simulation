@@ -1,5 +1,7 @@
 __pycache__
-generatedreport.yaml
 analysis.out
 outputControlOn.csv
 outputControlOff.csv
+simulation/.idea/
+simulation/reports/generatedreport.yaml
+simulation/reports/generatedreportControlerDisabled.yaml

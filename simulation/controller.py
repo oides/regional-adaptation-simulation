@@ -20,30 +20,22 @@ class Controller(object):
         self.simpyEnvironment = simpyEnvironment
         self.simulationEnvironment = simulationEnvironment
         self.lastCountJobsExecutedOnNodes = None
-    
+        self.lastCountIdleLoops = None
+
     def startOperation(self):
         while True:
             yield self.simpyEnvironment.timeout(self.tunning())
             
     def tunning(self):
-        jobsExecutedOnNodes = {node.identificador: node.jobsExecuted for node in self.simulationEnvironment.nodes}
-        controlledVariable = 0
-        
-        if self.lastCountJobsExecutedOnNodes is not None:            
-            for nodeId in self.lastCountJobsExecutedOnNodes:
-                lastCount = self.lastCountJobsExecutedOnNodes[nodeId]
-                currentCount = jobsExecutedOnNodes[nodeId]
-                
-                controlledVariable += (currentCount - lastCount)
-                
-            controlledVariable /= len(self.lastCountJobsExecutedOnNodes)
-        
+        idleLoops = self.simulationEnvironment.idleLoops;
+
+        if self.lastCountIdleLoops is not None:
+            controlledVariable = idleLoops - self.lastCountIdleLoops
             actuation_value = ControlFunctions.calculate_actuation_value(controlledVariable)
-                
+
             self.simulationEnvironment.region.increment_region_size(actuation_value)
-                
             Report.add_actuation(actuation_value, controlledVariable, self.simpyEnvironment.now)
-                
-        self.lastCountJobsExecutedOnNodes = jobsExecutedOnNodes
-        
+
+        self.lastCountIdleLoops = idleLoops
+
         return simconfig.CONTROLLER_FREQUENCY

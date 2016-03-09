@@ -25,7 +25,11 @@ def addDisturbing():
     simpyEnvironment.process(simulationEnvironment.start_disturbing())
         
         
-def addNodes(amount):        
+def addJobs():
+    simpyEnvironment.process(simulationEnvironment.start_jobs())
+
+
+def addNodes(amount):
     nodes = []
     
     for x in range(amount):
@@ -70,6 +74,9 @@ addRegion()
 # Adding disturbing process
 addDisturbing() # Processo que adiciona perturbação ao ambiente da simulação
 
+# Adding Jobs
+addJobs() # Processo que adiciona jobs ao ambiente da simulação
+
 # Adding node
 addNodes(simconfig.NODES_NUMBER)
 
@@ -83,4 +90,4 @@ ControlFunctions.simpyEnvironment = simpyEnvironment
 simpyEnvironment.run(until=simconfig.SIMULATION_TIME)
 
 # Generating report
-Report.generate_report()
+Report.generate_report(sys.argv[3])

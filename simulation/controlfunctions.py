@@ -25,5 +25,5 @@ class ControlFunctions(object):
     def calculate_actuation_value(controlled_variable_number_jobs_executed):
         
         error = simconfig.SET_POINT - controlled_variable_number_jobs_executed
-        
+
         return error

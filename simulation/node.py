@@ -23,9 +23,15 @@ class Node(object):
         while True:
             yield self.simpyEnvironment.timeout(self.executarTrabalho())
             
-    def executarTrabalho(self):        
-        self.jobsExecuted += 1
-        Report.add_jobs_executed_on_nodes(self.identificador)
-        
-        return ControlFunctions.calculate_job_cost(self.simulationEnvironment.NIVEL_ATUAL_PERT, self.simulationEnvironment.region._region_size)
-            
+    def executarTrabalho(self):
+
+        if self.simulationEnvironment.jobs > 0:
+            self.simulationEnvironment.jobs -= 1
+            self.jobsExecuted += 1
+            Report.add_jobs_executed_on_nodes(self.identificador)
+
+            return ControlFunctions.calculate_job_cost(self.simulationEnvironment.NIVEL_ATUAL_PERT, self.simulationEnvironment.region._region_size)
+        else:
+            self.simulationEnvironment.idleLoops += 1
+            Report.add_idle_cycle()
+            return 1
