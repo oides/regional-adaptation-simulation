@@ -74,7 +74,7 @@ class Report(object):
     def generate_report(controllerEnabled):
 
         if controllerEnabled == 'enabled':
-            fileName = 'generatedReport.yaml'
+            fileName = 'generatedreport.yaml'
         else:
             fileName = 'generatedreportControlerDisabled.yaml'
 
