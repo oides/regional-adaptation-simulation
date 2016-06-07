@@ -47,6 +47,6 @@ t.test(controlOff, controlOn, alternative = "less")
 cat("\n##########################################\n")
 cat("\n### START WILCOXON\n")
 cat("\n##########################################\n")
-wilcox.test(controlOff, controlOn, paired=TRUE, alternative = "less")
+wilcox.test(controlOn, controlOff, paired=TRUE, alternative = "less")
 
 sink()

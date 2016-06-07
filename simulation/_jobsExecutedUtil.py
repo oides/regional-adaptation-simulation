@@ -22,6 +22,3 @@ totalJobs = 0
 for node in JOBS_EXECUTED:
     totalJobs += node.get('jobsExecuted')
 
-print(str(totalJobs))
-
-

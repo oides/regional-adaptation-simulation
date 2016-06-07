@@ -56,10 +56,11 @@ def addRegion():
 REPLICATIONS = sys.argv[1]
 
 # Configuração e início da Simulação
-print('Starting simulation [replication ' + REPLICATIONS + ']...')
+print('Starting simulation [replication ' + REPLICATIONS + '][seed ' + sys.argv[2] + ']...')
 
 # Semente para reprodução de resultados
 if simconfig.ENABLE_SEED:
+    print('Usando semente: ' + simconfig.RANDOM_SEED)
     random.seed(simconfig.RANDOM_SEED)
 
 # Criando o environment do simpy
