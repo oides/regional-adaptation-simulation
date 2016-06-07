@@ -7,6 +7,7 @@ __author__ = 'Eudes Santos Andrade'
 
 import simconfig
 from report import Report
+import random
 
 
 class ControlFunctions(object):
@@ -15,7 +16,10 @@ class ControlFunctions(object):
     
     def calculate_job_cost(disturbind_level, region_size):
         job_cost = disturbind_level - region_size
-        
+
+        erlang_cost = random.gammavariate(simconfig.ERLANG_SHAPE, 1)
+        job_cost += int(erlang_cost)
+
         if job_cost < 1:
             job_cost = 1
             
