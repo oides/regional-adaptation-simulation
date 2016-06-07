@@ -45,7 +45,8 @@ def addNodes(amount):
 def addController(controllerEnabled):
     print('Controller ' + controllerEnabled + '...')
     if controllerEnabled == 'enabled':
-        controller = Controller(simpyEnvironment, simulationEnvironment)
+        controller = Controller(simpyEnvironment, simulationEnvironment, 0.2, 0.2, 0.2)
+        controller.setPoint(simconfig.SET_POINT)
         simpyEnvironment.process(controller.startOperation()) # Processo que adiciona novo no ambiente da simulação
         
 

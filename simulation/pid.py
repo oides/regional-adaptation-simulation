@@ -1,25 +1,15 @@
 """
-Represents each node on distributed environment in charge of execute jobs.
-
+Implementa controlador PID.
 """
 __author__ = 'Eudes Santos Andrade'
 
 
-from report import Report
-from controlfunctions import ControlFunctions
-from environment import SimulationEnvironment
-from region import Region
-import simconfig
-import copy
+class PID:
+    """
+    Discrete PID control
+    """
 
-
-class Controller(object):
-
-    def __init__(self, simpyEnvironment, simulationEnvironment, P=2.0, I=0.0, D=1.0, Derivator=0, Integrator=0, Integrator_max=5, Integrator_min=-5):
-
-        self.simpyEnvironment = simpyEnvironment
-        self.simulationEnvironment = simulationEnvironment
-        self.lastCountIdleLoops = None
+    def __init__(self, P=2.0, I=0.0, D=1.0, Derivator=0, Integrator=0, Integrator_max=500, Integrator_min=-500):
 
         self.Kp=P
         self.Ki=I
@@ -31,26 +21,6 @@ class Controller(object):
 
         self.set_point=0.0
         self.error=0.0
-
-    def startOperation(self):
-        while True:
-            yield self.simpyEnvironment.timeout(self.tunning())
-            
-    def tunning(self):
-        idleLoops = self.simulationEnvironment.idleLoops;
-
-        if self.lastCountIdleLoops is not None:
-            controlledVariable = idleLoops - self.lastCountIdleLoops
-
-            actuation_value = self.update(controlledVariable)
-
-            self.simulationEnvironment.region.increment_region_size(actuation_value)
-            Report.add_actuation(actuation_value, controlledVariable, self.simpyEnvironment.now)
-
-        self.lastCountIdleLoops = idleLoops
-
-        return simconfig.CONTROLLER_FREQUENCY
-
 
     def update(self,current_value):
 
@@ -71,7 +41,7 @@ class Controller(object):
 
         PID = self.P_value + self.I_value + self.D_value
 
-        return int(PID)
+        return PID
 
     def setPoint(self,set_point):
         """
@@ -107,3 +77,5 @@ class Controller(object):
 
     def getDerivator(self):
         return self.Derivator
+
+
